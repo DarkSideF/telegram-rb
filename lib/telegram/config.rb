@@ -22,6 +22,7 @@ module Telegram
 
     def_delegators :@options, :daemon, :daemon=, :key, :key=, :sock, :sock=,
                    :size, :size=, :profile, :profile=, :logger, :logger=,
+                   :port, :port=,
                    :config_file, :config_file=
 
     def initialize(options = {})

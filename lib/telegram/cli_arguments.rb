@@ -29,6 +29,10 @@ module Telegram
       "-k '#{@config.key}'"
     end
 
+    def port
+      "-k '#{@config.port}'"
+    end
+
     def disable_names
       '-I'
     end
