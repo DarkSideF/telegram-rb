@@ -1,6 +1,6 @@
 module Telegram
   # Telegram API Implementation
-  # 
+  #
   # @note You must avoid doing direct calls or initializes
   # @see Client
   # @version 0.1.0
@@ -78,7 +78,7 @@ module Telegram
     def update_chats!
       assert!
       callback = Callback.new
-      
+
       collected = 0
       collect_done = Proc.new do |id, data, count|
         collected += 1
@@ -96,7 +96,7 @@ module Telegram
         if success and data.class == Array
           chatsize = data.count { |chat| chat['peer_type'] == 'chat' }
           data.each do |chat|
-            if chat['peer_type'] == 'chat'
+            if chat['peer_type'] == 'chat' || chat['peer_type'] == 'channel'
               collect.call(chat['peer_id'], chatsize)
             elsif chat['peer_type'] == 'user'
               @chats << TelegramChat.new(self, chat)

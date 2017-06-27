@@ -154,6 +154,7 @@ module Telegram
     # @return [String] The type of the chat (chat, encr_chat, user and etc)
     attr_reader :type
 
+    attr_reader :id
     # Create a new chat instance
     #
     # @param [Client] client Root client instance
@@ -271,7 +272,7 @@ module Telegram
     # @return [TelegramContact] The contact who sent this message
     attr_reader :user
 
-    # @return [String] 
+    # @return [String]
     attr_reader :raw_target
 
     # @return [String] Content type
@@ -289,7 +290,7 @@ module Telegram
     # @since [0.1.0]
     def initialize(client, event)
       @event = event
-      
+
       @id = event.id
       @raw = event.message.text
       @time = event.time
@@ -304,7 +305,7 @@ module Telegram
       @target = case @receiver.type
       when 'user'
         @sender
-      when 'chat', 'encr_chat'
+      when 'chat', 'encr_chat', 'channel'
         @receiver
       end
     end
